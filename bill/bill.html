@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bill | Invoice Maker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="bill.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <div><strong>My Bill</strong><small>Create professional bills and GST invoices</small></div>
+        </div>
+        <nav class="top-actions"><button class="button button-ghost" id="newBillBtn">＋ New Bill</button><button
+                class="button button-ghost" id="savedBillsBtn">▣ Saved Bills</button><button class="button button-ghost"
+                id="printBtn">⎙ Print</button><button class="button button-primary" id="downloadBtn">↓ Download
+                PDF</button></nav>
+    </header>
+    <main class="workspace">
+        <section class="editor-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Invoice workspace</p>
+                    <h1>Create a new bill</h1>
+                </div><span class="status-pill"><i></i> Draft</span>
+            </div>
+            <form id="billForm" novalidate>
+                <div class="form-section">
+                    <div class="section-title"><span class="step">01</span>
+                        <div>
+                            <h2>Business information</h2>
+                            <p>Details shown at the top of your invoice</p>
+                        </div>
+                    </div>
+                    <div class="form-grid two-col"><label>Business name *<input id="businessName"
+                                placeholder="e.g. Acme Traders" required></label><label>Phone number<input
+                                id="businessPhone" type="tel" placeholder="+91 98765 43210"></label><label
+                            class="wide">Business address<textarea id="businessAddress" rows="2"
+                                placeholder="Street, city, state and PIN code"></textarea></label><label>Email<input
+                                id="businessEmail" type="email" placeholder="hello@business.com"></label><label>GSTIN /
+                            GST number<input id="businessGstin" placeholder="22AAAAA0000A1Z5"
+                                maxlength="15"></label><label>Business logo<div class="upload-control"><input
+                                    id="businessLogo" type="file" accept="image/png,image/jpeg,image/webp"><span>Upload
+                                    logo <b>Browse</b></span></div></label></div>
+                </div>
+                <div class="form-section">
+                    <div class="section-title"><span class="step">02</span>
+                        <div>
+                            <h2>Bill information</h2>
+                            <p>Set the dates and payment details</p>
+                        </div>
+                    </div>
+                    <div class="form-grid three-col"><label>Invoice / bill number *<input id="invoiceNumber"
+                                required></label><label>Bill date *<input id="billDate" type="date"
+                                required></label><label>Due date<input id="dueDate" type="date"></label><label>Payment
+                            method<select id="paymentMethod">
+                                <option>Bank transfer</option>
+                                <option>UPI</option>
+                                <option>Cash</option>
+                                <option>Credit card</option>
+                                <option>Cheque</option>
+                            </select></label><label>Place of supply<input id="placeOfSupply"
+                                placeholder="Maharashtra"></label><label>Tax mode<select id="taxMode">
+                                <option value="split">CGST + SGST</option>
+                                <option value="igst">IGST</option>
+                                <option value="none">No Tax</option>
+                            </select></label></div>
+                </div>
+                <div class="form-section">
+                    <div class="section-title"><span class="step">03</span>
+                        <div>
+                            <h2>Customer information</h2>
+                            <p>Who is this invoice for?</p>
+                        </div>
+                    </div>
+                    <div class="form-grid two-col"><label>Customer name *<input id="customerName" required
+                                placeholder="Customer or company name"></label><label>Customer phone<input
+                                id="customerPhone" type="tel" placeholder="+91 98765 43210"></label><label>Customer
+                            address<textarea id="customerAddress" rows="2"
+                                placeholder="Billing address"></textarea></label><label>Customer GSTIN <span
+                                class="optional">Optional</span><input id="customerGstin" maxlength="15"
+                                placeholder="22AAAAA0000A1Z5"></label></div>
+                </div>
+                <div class="form-section items-section">
+                    <div class="section-title"><span class="step">04</span>
+                        <div>
+                            <h2>Products & services</h2>
+                            <p>Add everything included in this bill</p>
+                        </div><button type="button" class="button button-add" id="addItemBtn">＋ Add item</button>
+                    </div>
+                    <div class="items-scroll">
+                        <table class="item-editor">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product / service *</th>
+                                    <th>HSN / SAC</th>
+                                    <th>Qty *</th>
+                                    <th>Unit</th>
+                                    <th>Rate *</th>
+                                    <th>Discount</th>
+                                    <th>GST %</th>
+                                    <th>Amount</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemsBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-section last-section">
+                    <div class="section-title"><span class="step">05</span>
+                        <div>
+                            <h2>Additional details</h2>
+                            <p>Leave a note or payment terms for your customer</p>
+                        </div>
+                    </div>
+                    <div class="form-grid two-col"><label>Notes<textarea id="notes" rows="3"
+                                placeholder="Thank you for your business!"></textarea></label><label>Terms &
+                            conditions<textarea id="terms" rows="3"
+                                placeholder="Payment due within the agreed terms."></textarea></label></div>
+                </div>
+            </form>
+            <div class="editor-footer"><button class="button button-secondary" id="clearBtn">Clear bill</button><button
+                    class="button button-primary" id="saveBtn">Save bill</button></div>
+        </section>
+        <aside class="preview-panel">
+            <div class="preview-toolbar">
+                <div>
+                    <p class="eyebrow">Live preview</p>
+                    <h2>Your invoice</h2>
+                </div><span class="a4-badge">A4 · Portrait</span>
+            </div>
+            <div class="preview-scroll">
+                <article class="invoice-paper" id="invoicePreview"></article>
+            </div>
+        </aside>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="band">
+        <h2>Mehta</h2>
+    </div>
+       <footer>
+            <p>Copyright &copy; 2026 MyBill. All rights reserved.</p>
+        </footer>
+    <script src="bill.js"></script>
+</body>
+
+</html>

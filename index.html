@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBill</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>MyBill</h1>
+        </div>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About us</a>
+            <a href="#rating">Rating</a>
+            <a href="#help">Help</a>
+        </nav>
+    </header>
+    <section class="home" id="home">
+        <h1>Welcome to <span>MyBill</span></h1>
+        <p>MyBill makes billing simple, fast, professional, and effortless for every business and customer.</p>
+        <div class="button-wrap">
+            <a href="bill/bill.html">
+                <button id="billButton">Get Started</button>
+            </a>
+        </div>
+        <img src="image/home bill.png" alt="home-bill">
+    </section>
+    <!--about-->
+    <section class="about" id="about">
+        <div class="about-text">
+            <h2>About MyBill</h2>
+
+            <p>
+                MyBill is a simple and user-friendly online billing platform
+                designed to make creating bills quick, easy, and professional.
+            </p>
+
+            <h3>Our Mission</h3>
+            <p>
+                Our mission is to provide a fast, simple, and reliable billing
+                solution that anyone can use without complicated software.
+            </p>
+
+            <h3>Why Choose MyBill?</h3>
+            <ul>
+                <li>Create professional bills easily</li>
+                <li>Save time with quick bill generation</li>
+                <li>Automatic total calculations</li>
+                <li>Easy to use on mobile and desktop</li>
+            </ul>
+        </div>
+        <div class="about-image">
+            <img src="image/bill.png" alt="bill logo">
+        </div>
+    </section>
+    <!--rating-->
+    <section class="rating" id="rating">
+        <div class="rating-info">
+            <h2>Rate MyBill</h2>
+            <p>
+                MyBill is a simple and easy-to-use website that helps you
+                create bills quickly and easily. Your feedback helps us
+                improve our website and provide a better experience.
+            </p>
+        </div>
+
+        <div class="rating-box">
+            <h3>How would you rate us?</h3>
+
+            <div class="stars">
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+            </div>
+
+            <p id="rating-text">Select your rating</p>
+
+            <button onclick="submitRating()">Submit Rating</button>
+        </div>
+    </section>
+    <!--help-->
+    <section class="help" id="help">
+        <div class="help-shell">
+            <div class="help-intro">
+                <p class="help-kicker">Need a hand?</p>
+                <h2>Help &amp; Support</h2>
+                <p class="help-summary">
+                    Find quick answers, learn how to create a bill, or get in touch with the MyBill team.
+                </p>
+
+                <div class="support-links">
+                    <a href="https://www.youtube.com/@mehta2009" target="_blank" rel="noopener noreferrer"
+                        class="support-link">
+                        <span class="support-icon youtube-icon"><i class="fa-brands fa-youtube"></i></span>
+                        <span><strong>Watch tutorials</strong><small>Learn the basics on YouTube</small></span>
+                        <i class="fa-solid fa-arrow-up-right-from-square support-arrow"></i>
+                    </a>
+                    <a href="https://www.instagram.com/mehta_tech?stkn=MTRnMDgyNHV6Z29qMw==" target="_blank" rel="noopener noreferrer" class="support-link">
+                        <span class="support-icon instagram-icon"><i class="fa-brands fa-instagram"></i></span>
+                        <span><strong>Follow us</strong><small>Follow MyBill on Instagram</small></span>
+                        <i class="fa-solid fa-arrow-up-right-from-square support-arrow"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="faq-panel">
+                <p class="help-kicker">Common questions</p>
+                <h3>Quick answers</h3>
+                <details open>
+                    <summary>How do I create my first bill?</summary>
+                    <p>Select "Get Started" and fill in your business, customer, and item details. Your totals update
+                        automatically.</p>
+                </details>
+                <details>
+                    <summary>Can I save a bill for later?</summary>
+                    <p>Yes. Use "Save Draft" in the billing workspace, then choose "Saved Bills" whenever you want to
+                        continue.</p>
+                </details>
+                <details>
+                    <summary>How can I download or print a bill?</summary>
+                    <p>After checking your invoice preview, choose "Download PDF" or "Print" from the top action bar.
+                    </p>
+                </details>
+            </div>
+        </div>
+        <footer>
+            <p>Copyright &copy; 2026 MyBill. All rights reserved.</p>
+        </footer>
+
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
